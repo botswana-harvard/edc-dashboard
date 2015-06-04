@@ -1,3 +1,3 @@
 # edc-dashboard
 
-dashboard
+bad dashboard
