@@ -16,7 +16,8 @@ in urls.py
     )
     urlpatterns += patterns(
         '',
-        url(r'^{app_name}/section/'.format(app_name=APP_NAME), include('edc.dashboard.section.urls'), name='section'),
+        url(r'^{app_name}/section/'.format(app_name=APP_NAME),
+            include('edc.dashboard.section.urls'), name='section'),
     )
     urlpatterns += patterns(
         '',
