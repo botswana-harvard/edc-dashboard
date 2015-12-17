@@ -1,6 +1,6 @@
 # edc-dashboard
 
-This is old code the desparately needs to be reworked / redesigned.
+This is old code that desparately needs to be reworked / redesigned.
 
 in urls.py
 
