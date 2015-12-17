@@ -20,6 +20,7 @@ setup(
     license='GPL licence, see LICENCE',
     description='EDC dashboard classes and templates.',
     long_description=README,
+    include_package_data=True,
     zip_safe=False,
     keywords='django Edc dashboard classes and templates',
     classifiers=[
