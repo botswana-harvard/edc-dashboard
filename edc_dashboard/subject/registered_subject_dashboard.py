@@ -9,7 +9,7 @@ from django.db.models import TextField, Count
 from django.template.loader import render_to_string
 
 from edc_appointment.models import Appointment, SubjectConfiguration
-from edc_base.encrypted_fields import EncryptedTextField
+from django_crypto_fields.fields import EncryptedTextField
 from edc_base.utils import convert_from_camel
 from edc_configuration.models import GlobalConfiguration
 from edc_constants.constants import NEW, NOT_REQUIRED, UNKEYED, KEYED, NEW_APPT, COMPLETE_APPT, IN_PROGRESS
@@ -478,13 +478,13 @@ class RegisteredSubjectDashboard(Dashboard):
                 context.update({'locator': None})
                 locator_add_url = reverse(
                     'admin:{}_{}_add'.format(
-                        self.locator_model._meta.app_label, self.locator_model._meta.module_name))
+                        self.locator_model._meta.app_label, self.locator_model._meta.model_name))
             if self.locator_inst:
                 context.update({'locator': self.locator_inst})
                 locator_change_url = reverse(
                     'admin:{}_{}_change'.format(
                         self.locator_model._meta.app_label,
-                        self.locator_model._meta.module_name), args=(self.locator_inst.pk, ))
+                        self.locator_model._meta.model_name), args=(self.locator_inst.pk, ))
                 for field in self.locator_inst._meta.fields:
                     if isinstance(field, (TextField)):
                         value = getattr(self.locator_inst, field.name)

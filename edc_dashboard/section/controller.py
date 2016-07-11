@@ -1,8 +1,9 @@
 import copy
 
+from django.apps import apps as django_apps
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.importlib import import_module
+from django.utils.module_loading import import_module
 from django.utils.module_loading import module_has_submodule
 
 from .base_section_view import BaseSectionView
@@ -127,7 +128,7 @@ class Controller(object):
         of the format (section_name, display_name, display_index)."""
         if not self._section_tuples:
             self._section_tuples = []
-            for inst in self.registry.itervalues():
+            for inst in self.registry.values():
                 tpl = SectionNamedTpl(
                     section_name=inst.section_name,
                     display_name=inst.section_display_name,
@@ -142,7 +143,7 @@ class Controller(object):
         return self.section_tuples
 
     def update_section_lists(self):
-        for section in self.registry.itervalues():
+        for section in self.registry.values():
             section.section_list = self.registry.keys()
 
     def unregister(self, section_name):
@@ -151,16 +152,33 @@ class Controller(object):
         self.reset_controller()
 
     def autodiscover(self):
+        before_import_registry = None
+        module_name = 'section'
         if not self.is_autodiscovered:
-            for app in settings.INSTALLED_APPS:
-                mod = import_module(app)
+            for app in django_apps.app_configs:
                 try:
-                    before_import_registry = copy.copy(site_sections.registry)
-                    import_module('%s.section' % app)
-                except:
-                    site_sections.registry = before_import_registry
-                    if module_has_submodule(mod, 'section'):
-                        raise
+                    mod = import_module(app)
+                    try:
+                        before_import_registry = copy.copy(site_sections.registry)
+                        import_module('{}.{}'.format(app, module_name))
+                        #sys.stdout.write(' * registered visit schedules from application \'{}\'\n'.format(app))
+                    except:
+                        site_sections.registry = before_import_registry
+                        if module_has_submodule(mod, module_name):
+                            raise
+                except ImportError:
+                    pass
             self.is_autodiscovered = True
+        #if not self.is_autodiscovered:
+        #    for app in settings.INSTALLED_APPS:
+        #        mod = import_module(app)
+        #        try:
+        #            before_import_registry = copy.copy(site_sections.registry)
+        #            import_module('%s.section' % app)
+        #        except:
+        #            site_sections.registry = before_import_registry
+        #            if module_has_submodule(mod, 'section'):
+        #                raise
+        #    self.is_autodiscovered = True
 
 site_sections = Controller()
