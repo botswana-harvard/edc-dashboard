@@ -1,11 +1,12 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-.project
 .pydevproject
-.settings/
+.project
+.settings
 test-*
-
+db.sqlite3
+etc/*
 # C extensions
 *.so
 

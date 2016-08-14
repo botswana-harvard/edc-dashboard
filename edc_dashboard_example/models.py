@@ -1,8 +1,7 @@
 from django.db import models
 
+from django_crypto_fields.fields import FirstnameField, LastnameField
 from edc_base.model.models import BaseUuidModel
-from django_crypto_fields.fields.firstname_field import FirstnameField
-from django_crypto_fields.fields.lastname_field import LastnameField
 
 
 class Subject(BaseUuidModel):
