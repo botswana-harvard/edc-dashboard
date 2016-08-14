@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_js_reverse',
     # 'corsheaders',
     'crispy_forms',
+    'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
     'edc_base.apps.AppConfig',
     'edc_dashboard.apps.AppConfig',
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'edc_dashboard.urls'
+ROOT_URLCONF = 'edc_dashboard_example.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'edc_dashboard.wsgi.application'
+WSGI_APPLICATION = 'edc_dashboard_example.wsgi.application'
 
 
 # Database
@@ -127,3 +128,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 GIT_DIR = BASE_DIR
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')

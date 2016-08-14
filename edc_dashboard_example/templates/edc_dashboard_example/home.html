@@ -1,0 +1,36 @@
+{% extends 'edc_base/base.html' %}
+
+{% load staticfiles %}
+
+{% block extra-scripts %}
+{{ block.super }}
+{% endblock extra-scripts %}
+
+{% block main %}
+
+<div class="container">
+
+    <div class="col-md-2">
+    </div> 
+    
+    <div class="col-md-8">
+        <div class="panel panel-default">
+        <div class="panel-heading">Home</div>
+        <ul id="nav-pill-home" class="nav nav-pills nav-stacked">
+          <li><a id="pill-call-manager" href="#">Subjects
+                <span class="fa fa-user fa-2x pull-right" aria-hidden="true"></span>
+          </a></li>
+          <li><a id="pill-potential-subjects" href="#">Labs
+          </a></li>
+          <li><a id="pill-potential-subjects" href="#">Monitoring
+          </a></li>
+          <li><a id="pill-potential-subjects" href="#">Admin
+          </a></li>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+ 
+</div>
+
+{% endblock main %}
