@@ -1,6 +1,6 @@
 # edc-dashboard
 
-in development
+in development ...
 
 ### Features
 
