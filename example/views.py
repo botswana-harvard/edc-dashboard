@@ -4,13 +4,12 @@ from django.views.generic.base import TemplateView
 
 from edc_base.views.edc_base_view_mixin import EdcBaseViewMixin
 from edc_dashboard.views import SubjectDashboardView as SubjectDashboardViewParent
-
-from .models import Subject
+from edc_example.models import SubjectConsent
 
 
 class HomeView(EdcBaseViewMixin, TemplateView):
 
-    template_name = 'edc_dashboard_example/home.html'
+    template_name = 'example/home.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -20,7 +19,7 @@ class HomeView(EdcBaseViewMixin, TemplateView):
 class MySubjectDashboard(SubjectDashboardViewParent):
 
     def subject_demographics(self):
-        obj = Subject.objects.get(subject_identifier=self.subject_identifier)
+        obj = SubjectConsent.objects.get(subject_identifier=self.subject_identifier)
         return {
             'first_name': obj.first_name,
             'last_name': obj.lastname,

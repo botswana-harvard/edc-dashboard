@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from edc_dashboard_example.views import HomeView
+
 from edc_base.views.login_view import LoginView
 from edc_base.views.logout_view import LogoutView
+
+from .views import HomeView
 
 urlpatterns = [
     url(r'login', LoginView.as_view(), name='login_url'),
