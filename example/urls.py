@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'login', LoginView.as_view(), name='login_url'),
     url(r'logout', LogoutView.as_view(pattern_name='login_url'), name='logout_url'),
     url(r'^edc/', include('edc_base.urls', 'edc-base')),
+    url(r'^visit-schedule/', include('edc_visit_schedule.urls', 'edc-visit-schedule')),
     url(r'^dashboard/', include('edc_dashboard.urls', 'edc-dashboard')),
     url(r'^admin/', edc_example_admin.urls),
     url(r'^admin/', admin.site.urls),
