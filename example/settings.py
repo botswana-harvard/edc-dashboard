@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'edc_lab.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
     'edc_visit_schedule.apps.AppConfig',
+    'edc_consent.apps.AppConfig',
     'edc_example.apps.AppConfig',
     'example.apps.AppConfig',
 ]
@@ -131,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 GIT_DIR = BASE_DIR
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
