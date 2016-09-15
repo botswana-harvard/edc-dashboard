@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView
 
 class HomeView(EdcBaseViewMixin, TemplateView):
 
-    template_name = 'example/home.html'
+    template_name = 'edc_dashboard/home.html'
     success_url = '/'
     paginate_by = 5
 
