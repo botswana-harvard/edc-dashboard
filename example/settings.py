@@ -38,21 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_js_reverse',
+    # 'corsheaders',
     'crispy_forms',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
+    'django_paginator.apps.AppConfig',
     'edc_base.apps.AppConfig',
-    'edc_base_test.apps.AppConfig',
-    'edc_consent.apps.AppConfig',
     'edc_dashboard.apps.AppConfig',
     'edc_device.apps.AppConfig',
-    'edc_identifier.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
-    'edc_example.apps.AppConfig',
     'edc_visit_schedule.apps.AppConfig',
-    'edc_timepoint.apps.AppConfig',
-    'edc_registration.apps.AppConfig'
+    'edc_consent.apps.AppConfig',
+    'edc_example.apps.AppConfig',
+    'example.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'edc_dashboard.urls'
+ROOT_URLCONF = 'example.urls'
 
 TEMPLATES = [
     {
@@ -83,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'edc_dashboard.wsgi.application'
+WSGI_APPLICATION = 'example.wsgi.application'
 
 
 # Database
@@ -92,7 +91,7 @@ WSGI_APPLICATION = 'edc_dashboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'example', 'db.sqlite3'),
     }
 }
 
@@ -134,5 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 GIT_DIR = BASE_DIR
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
