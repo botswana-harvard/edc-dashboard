@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_js_reverse',
     # 'corsheaders',
-    'crispy_forms',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
     'django_paginator.apps.AppConfig',
