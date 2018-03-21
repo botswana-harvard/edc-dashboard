@@ -53,7 +53,7 @@
                     <td>
                         <H5>Appointments</H5>
                         {% block appointment_continuation %}
-                          <A href="{% url 'admin:edc_appointment_appointment_add' %}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{dashboard_type}}&dashboard_model={{dashboard_model}}&dashboard_id={{dashboard_id}}&show=appointments&visit_definition={{ appointment.visit_definition.pk }}&registered_subject={{registered_subject.pk}}">add continuation appointment</A>
+                          <A href="{% url 'admin:edc_appointment_appointment_add' %}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{dashboard_type}}&dashboard_model={{dashboard_model}}&dashboard_id={{dashboard_id}}&show=appointments&visit_definition={{ appointment.visit_definition.pk }}&registered_subject={{registered_subject.pk}}&instruction={{instruction}}">add continuation appointment</A>
                         {% endblock appointment_continuation%}
                      
                         {% block appointments %}
