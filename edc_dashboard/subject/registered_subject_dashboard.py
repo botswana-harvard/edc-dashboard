@@ -514,7 +514,7 @@ class RegisteredSubjectDashboard(Dashboard):
                 context['visit_model_instance'] = None
         if not context.get('visit_model_instance'):
             if self.locator_inst:
-                visit_model_instance = getattr(self.locator_inst, self.locator_visit_model_attrname)
+                visit_model_instance = None #getattr(self.locator_inst, self.locator_visit_model_attrname)
             else:
                 locator_visit_code = self.locator_scheduled_visit_code
                 visit_model_instance = None
