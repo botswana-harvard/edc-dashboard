@@ -45,7 +45,6 @@ class Base(QueryStringViewMixin, UrlRequestContextMixin,
         queryset = context.get('object_list')  # from ListView
         context_object_name = self.get_context_object_name(queryset)
         wrapped_queryset = self.get_wrapped_queryset(queryset)
-        print(wrapped_queryset, 'wrapped_queryset !!!!!!!!!!!!!!!!!!!!!!!!!!')
         if self.listboard_fa_icon and self.listboard_fa_icon.startswith('fa-'):
             self.listboard_fa_icon = f'fa {self.listboard_fa_icon}'
         context.update(
@@ -121,10 +120,8 @@ class Base(QueryStringViewMixin, UrlRequestContextMixin,
         """
         filter_options = self.get_queryset_filter_options(
             self.request, *self.args, **self.kwargs)
-        print(filter_options, 'filter_options &&&&&&&&&&&&&&&&&&')
         exclude_options = self.get_queryset_exclude_options(
             self.request, *self.args, **self.kwargs)
-        print(exclude_options, 'exclude_options %%%%%%%%%%%%%%%%%%%%%%%%%%')
         if self.search_term and '|' not in self.search_term:
             search_terms = self.search_term.split('+')
             q = None
