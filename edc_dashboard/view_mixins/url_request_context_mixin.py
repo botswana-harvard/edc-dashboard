@@ -13,6 +13,7 @@ class UrlRequestContextMixin(ContextMixin):
         """
         try:
             self.request.url_name_data[existing_key]
+            print(self.request.url_name_data[existing_key], 'self.request.url_name_data[existing_key]')
         except KeyError as e:
             raise UrlRequestContextError(
                 f'Url name not defined in context. '
