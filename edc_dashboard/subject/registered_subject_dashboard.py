@@ -178,7 +178,7 @@ class RegisteredSubjectDashboard(Dashboard):
                 else:
                     if Appointment.objects.filter(
                             registered_subject=self.appointment.registered_subject,
-                            visit_definition=self.appointment.visit_definition, visit_instance=0) > 1:
+                            visit_definition=self.appointment.visit_definition, visit_instance=0).count() > 1:
                         self.delete_duplicate_appointments(inst=self)
                     self._appointment_zero = Appointment.objects.get(
                         registered_subject=self.appointment.registered_subject,
