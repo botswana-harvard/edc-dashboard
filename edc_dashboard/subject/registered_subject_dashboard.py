@@ -33,12 +33,13 @@ from .requisition_context import RequisitionContext
 class RegisteredSubjectDashboard(Dashboard):
 
     dashboard_url_name = 'subject_dashboard_url'
-    urlpatterns = [Dashboard.urlpatterns[0][:-1] + '(?P<show>{show})/$'] + Dashboard.urlpatterns
+    urlpatterns = [Dashboard.urlpatterns[0][:-1] + '(?P<show>{show})/(?P<instruction>{instruction})/$'] + Dashboard.urlpatterns
     urlpattern_options = dict(
         Dashboard.urlpattern_options,
         dashboard_model='household_member|visit|appointment|registered_subject',
         dashboard_type='subject',
-        show='appointments|forms')
+        show='appointments|forms',
+        instruction='V1|V3')
 
     def __init__(self, **kwargs):
         super(RegisteredSubjectDashboard, self).__init__(**kwargs)
@@ -103,6 +104,10 @@ class RegisteredSubjectDashboard(Dashboard):
     @property
     def show(self):
         return self.context.get('show', 'appointments')
+    
+    @property
+    def instruction(self):
+        return self.context.get('instruction')
 
     @property
     def home_url(self):
@@ -112,7 +117,8 @@ class RegisteredSubjectDashboard(Dashboard):
             kwargs={'dashboard_type': self.dashboard_type,
                     'dashboard_model': self.dashboard_model_name,
                     'dashboard_id': self.dashboard_id,
-                    'show': 'forms'})
+                    'show': 'forms',
+                    'instruction': self.instruction})
 
     def verify_dashboard_model(self, value):
         """Verify the dashboard model has a way to get to registered_subject."""
@@ -490,12 +496,14 @@ class RegisteredSubjectDashboard(Dashboard):
                         value = getattr(self.locator_inst, field.name)
                         if value:
                             setattr(self.locator_inst, field.name, '<BR>'.join(wrap(value, 25)))
+        
         context.update({
             'subject_dashboard_url': self.dashboard_url_name,
             'dashboard_type': self.dashboard_type,
             'dashboard_model': self.dashboard_model_name,
             'dashboard_id': self.dashboard_id,
             'show': self.show,
+            'instruction': self.instruction,
             'registered_subject': self.registered_subject,
             'visit_attr': self.visit_model_attrname,
             'visit_model_instance': self.visit_model_instance,
@@ -562,6 +570,7 @@ class RegisteredSubjectDashboard(Dashboard):
         else:
             self.context.update(action_item_message=None)
         self.context.update(self.base_rendered_context)
+        
         self.context.update({
             'action_items': action_item_instances,
             'registered_subject': self.registered_subject,
@@ -569,6 +578,7 @@ class RegisteredSubjectDashboard(Dashboard):
             'dashboard_model': self.dashboard_model_name,
             'dashboard_id': self.dashboard_id,
             'show': self.show,
+            'instruction': self.instruction,
             'action_item_meta': action_item_cls._meta})
         rendered_action_items = render_to_string(template, self.context)
         return rendered_action_items
@@ -597,7 +607,8 @@ class RegisteredSubjectDashboard(Dashboard):
             'dashboard_model': self.dashboard_model_name,
             'dashboard_id': self.dashboard_id,
             'subject_dashboard_url': self.dashboard_url_name,
-            'show': self.show})
+            'show': self.show,
+            'instruction': self.instruction})
         rendered_scheduled_forms = render_to_string(template, context)
         return rendered_scheduled_forms
 
@@ -639,7 +650,8 @@ class RegisteredSubjectDashboard(Dashboard):
             'dashboard_model': self.dashboard_model_name,
             'dashboard_id': self.dashboard_id,
             'subject_dashboard_url': self.dashboard_url_name,
-            'show': self.show})
+            'show': self.show,
+            'instruction': self.instruction})
         rendered_requisitions = render_to_string(template, context)
         return rendered_requisitions
 
