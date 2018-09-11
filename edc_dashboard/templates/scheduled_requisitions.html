@@ -26,7 +26,7 @@
             <td>{{ forloop.counter }}</td>
             <td>
             {% if scheduled_requisition.model_url %}
-                <A href="{{ scheduled_requisition.model_url }}?next={{ subject_dashboard_url }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&{{visit_attr}}={{ visit_model_instance.pk }}&visit_attr={{visit_attr}}&entry_order={{ scheduled_requisition.entry_order }}&group_title={{ scheduled_requisition.group_title }}&panel={{ scheduled_requisition.panel }}&aliquot_type={{ scheduled_requisition.aliquot_type }}">{{ scheduled_requisition.label|title }}</A>
+                <A href="{{ scheduled_requisition.model_url }}?next={{ subject_dashboard_url }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&instruction={{ instruction }}&{{visit_attr}}={{ visit_model_instance.pk }}&visit_attr={{visit_attr}}&entry_order={{ scheduled_requisition.entry_order }}&group_title={{ scheduled_requisition.group_title }}&panel={{ scheduled_requisition.panel }}&aliquot_type={{ scheduled_requisition.aliquot_type }}">{{ scheduled_requisition.label|title }}</A>
             {% else %}                
                 {{ scheduled_requisition.label|title }}
             {% endif %}
@@ -36,7 +36,7 @@
                      
             <td>
               {% if scheduled_requisition.meta_data_model_change_url %}
-                <A href="{{ scheduled_requisition.meta_data_model_change_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&registered_subject={{ registered_subject }}&entry={{ scheduled_requisition.scheduled_requisition.pk }}&appointment={{ appointment.pk }}">{{ scheduled_requisition.status }}</A></td>
+                <A href="{{ scheduled_requisition.meta_data_model_change_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&instruction={{ instruction }}&registered_subject={{ registered_subject }}&entry={{ scheduled_requisition.scheduled_requisition.pk }}&appointment={{ appointment.pk }}">{{ scheduled_requisition.status }}</A></td>
               {% else %}
                 {{ scheduled_requisition.status }}
               {% endif %}
@@ -46,12 +46,12 @@
             <td>{{ scheduled_requisition.entry_comment|default:'' }}</td>        
             <td>
             {% if scheduled_requisition.databrowse_url %}
-                <A href="{{ scheduled_requisition.databrowse_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms">Browse</A>
+                <A href="{{ scheduled_requisition.databrowse_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&instruction={{ instruction }}">Browse</A>
             {% endif %}
             </td>
             <td>
             {% if scheduled_requisition.audit_trail_url %}
-              <A href="{{ scheduled_requisition.audit_trail_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms">Audit trail</A>
+              <A href="{{ scheduled_requisition.audit_trail_url }}?next={{ subject_dashboard_url|default:"dashboard_url" }}&dashboard_type={{ dashboard_type }}&dashboard_model={{ dashboard_model }}&dashboard_id={{ dashboard_id }}&show=forms&instruction={{ instruction }}">Audit trail</A>
             {% endif %}
             </td>
         </tr>
@@ -73,6 +73,7 @@
                  <input type="hidden" name="dashboard_id" value="{{dashboard_id}}" >
                  <input type="hidden" name="url" value="{{subject_dashboard_url}}" >
                  <input type="hidden" name="show" value="forms" >
+                 <input type="hidden" name="instruction" value="{{instruction}}" >
                  <select name="panel" onChange="this.form.submit()">
                    <option value="">Select an additional PRN lab</option>
                       {% for req in drop_down_list_requisitions %}

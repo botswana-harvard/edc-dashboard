@@ -21,13 +21,15 @@ def additional_requisition(request):
     dashboard_model = _get_param(request, 'dashboard_model')
     dashboard_id = _get_param(request, 'dashboard_id')
     show = _get_param(request, 'show')
+    instruction = _get_param(request, 'instruction')
     url = _get_param(request, 'url')
 
     return redirect(url,
                     dashboard_type=dashboard_type,
                     dashboard_model=dashboard_model,
                     dashboard_id=dashboard_id,
-                    show=show)
+                    show=show,
+                    instruction=instruction)
 
 
 def _get_param(request, param_key):
