@@ -12,8 +12,8 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='edc-dashboard',
     version='0.2.8',
-    author=u'Erik van Widenfelt',
-    author_email='ew2789@gmail.com',
+    author=u'Software Engineering & Data Management',
+    author_email='se-dmc@bhp.org.bw',
     packages=find_packages(),
     url='http://github.com/botswana-harvard/edc-dashboard',
     license='GPL licence, see LICENCE',
