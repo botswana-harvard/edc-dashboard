@@ -3,6 +3,7 @@ from edc_constants.constants import UUID_PATTERN
 
 
 class UrlConfig:
+
     def __init__(self, url_name=None, view_class=None, label=None,
                  identifier_label=None, identifier_pattern=None):
         self.url_name = url_name
@@ -32,7 +33,7 @@ class UrlConfig:
             re_path(r'^' + f'{self.label}/'
                     f'(?P<{self.identifier_label}>{self.identifier_pattern})/'
                     f'(?P<appointment>{UUID_PATTERN.pattern})/'
-                    f'(?P<reason>\w+)/',
+                    f'(?P<reason>[\w ]*)/',
                     self.view_class.as_view(), name=self.url_name),
             re_path(r'^' + f'{self.label}/'
                     f'(?P<{self.identifier_label}>{self.identifier_pattern})/'
